@@ -20,19 +20,24 @@ from get_object_block_imgs import get_image_for_blocks
 #Import debug module
 from get_object_block_training_and_debug import extract_training_data, check_similarities_between_v1_v2
 import sys
+#TODO This doesn't work for me because Xiuxia's forked repository is ADAP-3D_v2 instead of ADAP-3D-V2
+# To avoid using `sys.path.append(r"../ADAP-3D-V2/yolov5")`, just call `from yolov5.detect import run` instead.
+# If the latter doesn't work, add __init__.py into the folder yolov5
 sys.path.append(r"../ADAP-3D-V2/yolov5")
 from detect import run
 from convert_txt_to_mz_rt import getinferencearrs, getinferencefilenames, convert
 import params
 import pickle
 import gc
-import cv2
-import matplotlib
-import matplotlib.pyplot as plt
-from matplotlib import cm
-import numpy as np
+# import cv2
+# import matplotlib
+# import matplotlib.pyplot as plt
+# from matplotlib import cm
+# import numpy as np
 
 def main():
+    #TODO This will break if multiple users would try to run it. Can we move "Blocks" to a temporary folder?
+    # Temporary folder is a cleaner approach in general. See https://docs.python.org/3/library/tempfile.html
     if not os.path.isdir(r'../Blocks'):
       os.system('mkdir .\Blocks')
     extract_training_data(params.profile_mzml_path, window_mz = 48, window_rt= 80)
@@ -47,6 +52,7 @@ def main():
     dataframetoexport = convert(imgs[2], imgs[1], arroffilenames, arrofpredictions, params.window_mz, params.window_rt)
     dataframetoexport.to_csv(params.results_path + "\Final Predictions.csv")
 
+#TODO Use package argparse to add command-line arguments to select a raw data file and other options if necessary.
 if __name__ == '__main__':
     main()
 

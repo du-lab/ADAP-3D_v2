@@ -7,6 +7,8 @@ PARAMETERS MODULE
 
 """
 
+#TODO Change to OOP. Don't use any absolute paths here. They won't work on my computer.
+
 profile_mzml_path = r"C:\Users\jerry\Desktop\DCSM_PROFILE.mzML" #File path to the mzML file (profiled form only) to conduct peak detection on
 #profile_mzml_path = r"C:\Users\jerry\Desktop\VT001.mzml" #File path to the mzML file (profiled form only) to conduct peak detection on
 #profile_mzml_path = r"C:\Users\jerry\Desktop\YP01 (1).cdf" #File path to the mzML file (profiled form only) to conduct peak detection on
